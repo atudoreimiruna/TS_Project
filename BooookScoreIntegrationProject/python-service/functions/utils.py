@@ -25,6 +25,10 @@ class APIClient():
             self.client = AnthropicClient(key_path, model)
         elif api == "together":
             self.client = TogetherClient(key_path, model)
+        elif api == "groq":
+            self.client = GroqClient(key_path, model)
+        elif api == "aimlapi":
+            self.client = AimlapiClient(key_path, model)
         else:
             raise ValueError(f"API {api} not supported, custom implementation required.")
 
@@ -105,6 +109,35 @@ class TogetherClient(BaseClient):
     def __init__(self, key_path, model):
         super().__init__(key_path, model)
         self.client = OpenAI(api_key=self.key, base_url="https://api.together.xyz/v1")
+
+    def send_request(self, prompt, max_tokens, temperature):
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=temperature,
+            max_tokens=max_tokens
+        )
+        return response.choices[0].message.content
+
+class GroqClient(BaseClient):
+    def __init__(self, key_path, model):
+        super().__init__(key_path, model)
+        self.client = OpenAI(api_key=self.key, base_url="https://api.groq.com/openai/v1")
+
+    def send_request(self, prompt, max_tokens, temperature):
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=temperature,
+            max_tokens=max_tokens
+        )
+        return response.choices[0].message.content
+
+
+class AimlapiClient(BaseClient):
+    def __init__(self, key_path, model):
+        super().__init__(key_path, model)
+        self.client = OpenAI(api_key=self.key, base_url="https://api.aimlapi.com/v1")
 
     def send_request(self, prompt, max_tokens, temperature):
         response = self.client.chat.completions.create(

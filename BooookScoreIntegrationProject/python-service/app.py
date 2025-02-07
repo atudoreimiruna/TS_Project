@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from booookscore.summ import Summarizer
+from functions.summ import Summarizer
 import os
 import json
 import pickle
@@ -8,38 +8,33 @@ app = Flask(__name__)
 
 def generate_summary(book_title):
     # Define paths
-    book_path = f"all_books_chunked_128.pkl"  # Assuming the chunked data is saved as a pickle file
-    summ_path = "summaries.json"  # Path for storing summaries
+    book_path = f"all_books_chunked_512.pkl"  
+    summ_path = "summaries.json" 
 
     # Initialize the summarizer
     summarizer = Summarizer(
-        model="gpt-4",
-        api="openai",
+        model="mixtral-8x7b-32768",
+        api="groq",
         api_key="./api_key.txt",
         summ_path=summ_path,
         method="inc",
-        chunk_size=128,  # Reduced chunk size
-        max_context_len=256,  # Reduced context length
-        max_summary_len=200,  # Shortened summary length
-        word_ratio=0.5  # Reduce compression ratio if needed
+        chunk_size=512,  
+        max_context_len=1024, 
+        max_summary_len=1024, 
     )
 
     
-    # Check if chunked data exists
     if not os.path.exists(book_path):
         return "Book data not found!", 404
 
-    # Run summarization process
-    summarizer.get_summaries(book_path)
 
-    # Load the final summary from the generated summaries
     if os.path.exists(summ_path):
         with open(summ_path, 'r') as f:
             summaries = json.load(f)
-        final_summary = summaries.get(book_title, {}).get('final_summary', "No summary available")
-        return final_summary
+        return summaries.get(book_title, {}).get('final_summary', "No summary available")
     else:
-        return "Summaries file not found.", 404
+        return summarizer.get_summaries(book_path)
+
 
 @app.route('/')
 def home():

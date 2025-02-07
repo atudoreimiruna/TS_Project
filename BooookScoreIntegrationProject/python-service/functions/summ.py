@@ -7,7 +7,7 @@ import math
 import tiktoken
 from tqdm import tqdm
 from collections import defaultdict
-from utils import APIClient, count_tokens
+from .utils import APIClient, count_tokens
 
 
 class Summarizer():
@@ -209,21 +209,27 @@ class Summarizer():
         chunk_trims = 0
         compressed_summary = None
         summary_words = len(summary.split())
-        ori_expected_words = int(word_limit * j / num_chunks)  # no need to be j + 1 since we're compressing the summary at the previous chunk
+        ori_expected_words = int(word_limit * j / num_chunks)  # No need for j + 1 since we compress the previous chunk
         expected_words = ori_expected_words
         actual_words = expected_words
         
-        dic = {}  # keep track of each trimmed summary and their actual number of words
+        dic = {}  # Track trimmed summaries and their actual word count
 
-        while response[-1] not in ['.', '?', '!', '\"', '\''] \
-        or count_tokens(response) >= summary_len \
-        or actual_words < int(expected_words * 0.8) or actual_words > int(expected_words * 1.2):
+        while response[-1] not in ['.', '?', '!', '"'] \
+            or count_tokens(response) >= summary_len \
+            or actual_words < int(expected_words * 0.8) or actual_words > int(expected_words * 1.2):
+            
             if chunk_trims == 6:
                 print(f"\nCOMPRESSION FAILED AFTER 6 ATTEMPTS, SKIPPING\n")
-                if not all([v['valid_response'] == False for v in dic.values()]):
-                    dic = {k: v for k, v in dic.items() if v['valid_response'] == True}
-                closest_key = min(dic, key=lambda x:abs(x-ori_expected_words))  # find the trimmed summary with actual # words closest to the expected # words
-                return dic[closest_key]['compressed_summary'], dic[closest_key]['response'], chunk_trims, 1
+                
+                # Ensure we have valid entries before calling min()
+                valid_entries = {k: v for k, v in dic.items() if v['valid_response']}
+                if valid_entries:
+                    closest_key = min(valid_entries, key=lambda x: abs(x - ori_expected_words))
+                    return valid_entries[closest_key]['compressed_summary'], valid_entries[closest_key]['response'], chunk_trims, 1
+                
+                # Fallback: return the original response if no valid compression
+                return response, response, chunk_trims, 1
             
             expected_words = int(ori_expected_words * (1 - chunk_trims * 0.05))
             prompt = self.templates["compress_template"].format(summary, summary_words, expected_words, expected_words)
@@ -231,14 +237,13 @@ class Summarizer():
             response = self.client.obtain_response(prompt, max_tokens=summary_len, temperature=1)
             compressed_summary = response
             actual_words = len(compressed_summary.split())
-            current_tokens = count_tokens(compressed_summary)
 
-            if compressed_summary[-1] not in ['.', '?', '!', '\"', '\''] \
-            or count_tokens(compressed_summary) >= summary_len \
-            or actual_words < int(expected_words * 0.8) or actual_words > int(expected_words * 1.2):
+            if compressed_summary[-1] not in ['.', '?', '!', '"'] \
+                or count_tokens(compressed_summary) >= summary_len \
+                or actual_words < int(expected_words * 0.8) or actual_words > int(expected_words * 1.2):
                 chunk_trims += 1
                 continue
-            
+
             num_words = int(word_limit * (j + 1) / num_chunks)
             prompt = self.templates['template'].format(chunk, compressed_summary, num_words, num_words)
             response = self.client.obtain_response(prompt, max_tokens=summary_len, temperature=0.5)
@@ -246,12 +251,13 @@ class Summarizer():
             dic[actual_words] = {
                 'compressed_summary': compressed_summary,
                 'response': response,
-                'valid_response': response[-1] in ['.', '?', '!', '\"', '\''] \
-                and count_tokens(response) < summary_len
+                'valid_response': response[-1] in ['.', '?', '!', '"'] and count_tokens(response) < summary_len
             }
+            
             chunk_trims += 1
 
         return compressed_summary, response, chunk_trims, 0
+
 
     def get_incremental_summaries(self, book_path):
         data = pickle.load(open(book_path, 'rb'))
