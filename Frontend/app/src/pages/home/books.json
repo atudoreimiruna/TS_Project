@@ -1,0 +1,21 @@
+[
+    {
+      "id": "t-shirt",
+      "name": "Dark Psychology",
+      "imageUrl": "https://mcdn.elefant.ro/mnresize/1000/-/is/product-images/carte-straina/ingram-sup/ingram1/4945eeac/0de9/46cf/8156/67077868ebc1/4945eeac-0de9-46cf-8156-67077868ebc1_1.jpg",
+      "description": "Master the Secret Techniques of Covert Emotional Manipulation, Stealth Persuasion and Mind Control"
+    },
+    {
+      "id": "wallet",
+      "name": "Mierea leului",
+      "imageUrl": "https://cdn.dc5.ro/img-prod/2064398610-1.jpeg",
+      "description": "Aceasta este povestea unui copil care s‑a născut străin de mama și tatăl lui; povestea unui bărbat magnific, foarte puternic, care a jinduit fără încetare să câștige dragostea părinților săi – și, astfel, dragostea în general."
+    },
+    {
+      "id": "cup",
+      "name": "Corabia ingropata",
+      "imageUrl": "https://cdn.dc5.ro/img-prod/2064398579-1-240.jpeg",
+      "description": "În vara fierbinte a anului 1939, Marea Britanie se pregătește de război. Însă, la o fermă din Suffolk, viața liniștită a doamnei Pretty și a fiului său este tulburată de vestea că pe pământul lor ar fi îngropată o comoară. Ciudata movilă din spatele casei ar putea ascunde un mormânt, o corabie, bijuterii străvechi – dar cine se încumetă să sape?"
+    }
+  ]
+  

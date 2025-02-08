@@ -1,0 +1,45 @@
+-- Insert the first book
+INSERT INTO Books (Title, Author, Description, PublishDate, ImagePath)
+VALUES ('The Great Gatsby', 'F. Scott Fitzgerald', 'A novel set in the Jazz Age that tells the story of Jay Gatsby and his unrequited love for Daisy Buchanan.', '1925-04-10', 'https://th.bing.com/th/id/OIP.eTO09xqdGYiKU913AIb0vQHaJt?rs=1&pid=ImgDetMain');
+
+INSERT INTO Books (Title, Author, Description, PublishDate, ImagePath)
+VALUES ('Reminiscences of Pioneer Days in St. Paul', 'Frank Moore', 'Reminiscences of Pioneer Days in St. Paul" by Frank Moore is a historical account written in the mid-19th century.', '1925-04-10', 'https://m.media-amazon.com/images/I/61w1hBsv2cL._AC_UF1000,1000_QL80_.jpg');
+
+-- Insert the second Book
+INSERT INTO Books (Title, Author, Description, PublishDate, ImagePath)
+VALUES ('To Kill a Mockingbird', 'Harper Lee', 'A novel about the serious issues of rape and racial inequality, told through the eyes of young Scout Finch.', '1960-07-11', 'https://cdn.britannica.com/21/182021-050-666DB6B1/book-cover-To-Kill-a-Mockingbird-many-1961.jpg');
+
+-- Insert the third Book
+INSERT INTO Books (Title, Author, Description, PublishDate, ImagePath)
+VALUES ('1984', 'George Orwell', 'A dystopian novel set in a totalitarian society under constant surveillance.', '1949-06-08', 'https://th.bing.com/th/id/OIP.1aLsycobx7CsgllYaax4eAHaLR?w=202&h=308&c=7&r=0&o=5&dpr=1.3&pid=1.7');
+
+-- Insert challenge
+INSERT INTO Challenges (Title, Description, DateOfCreation)
+VALUES ('Read 50 Books in a Year', 'Challenge yourself to read 50 books within a year.', '2025-01-01');
+
+-- Insert a post for the first book
+INSERT INTO Posts (UserId, UserName, Description, ImagePath, PublishDate)
+VALUES (3, 'mirunaa@gmail.com', 'Just finished reading The Great Gatsby! Highly recommend it.', 'https://th.bing.com/th/id/R.5e4f80ce1e13e4525ab4fc2a741c0c0a?rik=%2b23auUeR2aZxFg&pid=ImgRaw&r=0', '2025-02-08');
+
+-- Insert a Post for the second Book
+INSERT INTO Posts (UserId, UserName, Description, ImagePath, PublishDate)
+VALUES (3, 'mirunaa@gmail.com', 'To Kill a Mockingbird is a must-read for everyone.', 'https://www.thirteen.org/wp-content/uploads/sites/2/2015/07/BrunoFerrara.png', '2025-02-08');
+
+-- Insert a Post for the third Book
+INSERT INTO Posts (UserId, UserName, Description, ImagePath, PublishDate)
+VALUES (3, 'mirunaa@gmail.com', '1984 is a chilling and thought-provoking novel.', 'https://westenglandbylines.co.uk/wp-content/uploads/2022/12/George-Orwell-1984-Ivan-Radic-CC-BY-2-0-B.jpg', '2025-02-08');
+
+-- Insert review for the first book
+INSERT INTO Reviews (UserId, UserName, BookId, Title, Comment, PublishDate)
+VALUES (3, 'mirunaa@gmail.com', 1, 'Amazing Read!', 'The Great Gatsby is a timeless classic that captures the essence of the American Dream.', '2025-02-08');
+
+-- Insert a Review for the second Book
+INSERT INTO Reviews (UserId, UserName, BookId, Title, Comment, PublishDate)
+VALUES (3, 'mirunaa@gmail.com', 2, 'Thought-Provoking', 'To Kill a Mockingbird is a powerful and moving story about justice and morality.', '2025-02-08');
+
+-- Insert a Review for the third Book
+INSERT INTO Reviews (UserId, UserName, BookId, Title, Comment, PublishDate)
+VALUES (3, 'mirunaa@gmail.com', 3, 'Chilling and Relevant', '1984 is a chilling depiction of a dystopian future that feels all too relevant today.', '2025-02-08');
+
+INSERT INTO UserChallenge (UserId, ChallengeId)
+VALUES (3, 1);

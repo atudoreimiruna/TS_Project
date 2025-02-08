@@ -1,0 +1,71 @@
+.body {
+    margin: 0;
+    padding: 0;
+    background-color: #f1f4f9;
+  }
+  
+  .navbar {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0f1c2c;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    height: 70px;
+    margin: -8px;
+  }
+  
+  .togglebutton {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+  }
+  
+  .togglebutton .bar {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+  }
+  .navbarlinks {
+    height: 70%;
+  }
+  
+  .navbarlinks ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbarlinks li {
+    list-style: none;
+  }
+  
+  .navbarlinks li a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 1rem;
+  }
+  
+  .navbarlinks li:hover {
+    color: rgb(209, 86, 86);
+    box-shadow: inset 200px 0 0 0 #6b809850;
+    border-radius: 10px;
+    transition: 500ms linear;
+  }
+  .buttonn{
+    font-size: .8em;
+    font-family: "Comic Sans MS", "Comic Sans", cursive; 
+    font-style: comic sans ms;
+	  position: center;
+    border-radius: 35px;
+    margin: 20px;
+    padding: 10px;
+    
+  }

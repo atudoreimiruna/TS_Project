@@ -1,0 +1,82 @@
+.create-btn{
+    background-color: #1ab5fc;
+  position: relative;
+  margin-left: 20px;
+  top: 20px;
+  text-align: center;
+  width: 150px;
+  height: 50px;
+  font-size: 18px; 
+  padding: 10px 15px; 
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-left: 20px;
+  }
+
+
+.login-form input {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    font-size: 18px;
+    border: 2px solid #676666;
+    border-radius: 6px;
+    margin-left: 20px;
+    height: 40px;
+}
+  
+.login-form input[type="submit"] {
+    background-color: #1ab5fc;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+.login-form input:focus {
+    outline: none;
+    border-color: #1ab5fc;
+    border: 3px solid #676666;
+  }
+  
+  .login-form input:hover {
+    background-color: rgb(226, 226, 226);
+  }
+  
+
+.users {
+    font-size: 20px;
+}
+
+.tablee {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+.columnn th {
+    border: 1px solid rgb(89, 71, 55);
+    background-color: rgb(245, 197, 153);
+    padding: 10px;
+    text-align: left;
+  }
+  
+.users td {
+    border: 1px solid rgb(89, 71, 55);
+    padding: 8px;
+    text-align: left;
+  }
+  
+.users td button {
+    padding: 5px 10px;
+    background-color: #ff6666;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+  }

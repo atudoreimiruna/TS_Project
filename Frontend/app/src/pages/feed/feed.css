@@ -1,0 +1,92 @@
+.product {
+    padding: 15px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    background-color: #818cca;
+    min-width: 1200px;
+    border-radius: 125px;
+    margin-left: 200px;
+}
+
+.product:hover {
+    border-color: #ff593d;
+
+}
+
+.product p {
+    min-height: 25px;
+    width:fit-content;
+  }
+
+.product span {
+    font-weight: bold;
+    
+}
+
+.product button {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 15px;
+    padding: 5px;
+}
+
+.product button:hover {
+    color: white;
+    background-color: #ff593d;
+    border: 1px solid #ff593d;
+    cursor: pointer;
+}
+
+.product .image-product {
+    /*height: 100%;*/
+    width: 50%;
+    max-width: 100px;
+}
+.buttons {
+    margin-left: 540px;
+    margin-top: 50px;
+}
+.button2{
+    margin-left: 100px
+}
+
+.or{
+    margin-left: 120px;
+}
+
+.pt{
+    margin-top: 50px;
+    margin-left: 600px;
+}
+
+.bttn{
+    max-width: 150px;
+    margin-left: 10px;
+}
+
+.all{
+    background-color: rgb(164, 207, 248);
+}
+.content{
+    max-width: 500px;
+}
+.ill{
+    min-width: 1120px;
+    min-height: 30px;
+    margin-top: 20px;
+    margin-left: 140px;
+    padding: 1rem;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    height: 10px;
+    font-family: "Comic Sans MS", "Comic Sans", cursive; 
+    font-style: comic sans ms;
+}
+
+.bttn{
+    max-width: fit-content;
+    max-height: fit-content
+}
